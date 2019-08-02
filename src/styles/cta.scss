@@ -1,0 +1,55 @@
+
+.cta {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    justify-self: center;
+    align-self: center;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 500ms ease, transform 500ms ease;
+    //opacity: 0;
+    transform-origin: 0 0;
+    align-self: stretch;
+    background: $color-teal;
+    color: white;
+    //grid-row: span 2;
+    grid-column: span 2;
+    font-size: 1em;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.cta__line1 {
+    transition: 500ms ease;
+    transition-delay: 300ms;
+    opacity: 0;
+    transform: translate(-1em, 0);
+    font-size: 3em;
+    margin: 0 0 0.3em 0;
+}
+
+.cta__line2 {
+    transition: 500ms ease;
+    transition-delay: 500ms;
+    transform: translate(1em, 0);
+    opacity: 0;
+    font-size: 1.5em;
+    margin: 0;
+}
+
+.cta_inview {
+    .cta__line1,
+    .cta__line2 {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+}
+
+@media(max-width: $device-profile-medium) {
+    .cta {
+        grid-column: 1/-1;
+    }
+}

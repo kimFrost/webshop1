@@ -1,0 +1,36 @@
+
+.basket {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.basket__items {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.basket__total {
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    align-self: flex-end;
+    margin-bottom: 20px;
+}
+
+.basket__total-text {
+    margin-right: 10px;
+}
+
+.basket__total-value {
+    color: $color-teal;
+}
+
+.basket__bottombar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: relative;
+}

@@ -1,0 +1,189 @@
+
+$header-upper-height: 60px;
+$header-lower-height: 60px;
+$header-transition-time: 350ms;
+$header-logo-width: 150px;
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    transition: transform $header-transition-time ease;
+    transform: translateY(0);   
+}
+
+.header__upper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: $header-upper-height;
+    overflow: hidden;
+    background: white;
+    z-index: 1;
+}
+
+.header__mobilemenu {
+    display: none;
+}
+
+.header__logo-upper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    fill: black;
+    transform: translateY(0);
+    transition: $header-transition-time ease;
+    img {
+        display: block;
+        width: 100%;
+        margin: 0;
+    }
+}
+
+%header__basket {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    transform: translateY(0);
+    transition: $header-transition-time ease;
+    color: black;
+    text-decoration: none;
+    svg {
+        display: block;
+        width: 32px;
+        margin-left: 10px;
+    }
+}
+
+.header__basket-upper {
+    @extend %header__basket;
+}
+
+.header__lower {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: $header-lower-height;
+    background: $color-teal;
+    color: white;
+    fill: white;
+    overflow: hidden;
+    a {
+        color: inherit;
+    }
+}
+
+.header__logo-lower {
+    fill: white;
+    transform: translateY(-60px);
+    transition: $header-transition-time ease;
+    position: absolute;
+}
+
+.header__search {
+    position: relative;
+}
+
+.header__navigation {
+    display: flex;
+    justify-content: center;
+    transition: $header-transition-time ease;
+    transition-delay: $header-transition-time;
+    & > * {
+        transition: 300ms ease;
+        transform-origin: 0 100%;
+        &:hover {
+            //transform: rotate(-10deg);
+        }
+        & + * {
+            margin-left: 2em;
+        }
+    }
+}
+
+.header__basket-lower {
+    @extend %header__basket;
+    transform: translateY(-60px);
+    .bubble {
+        background: white;
+        color: $color-teal;
+    }
+}
+
+.header__minibasket {
+    position: absolute;
+    top: 100%;
+    right: 0;
+}
+
+.header__attach-line {
+    width: 100%;
+    position: relative;
+    transform: translateY(-$header-lower-height + 2);
+    transition: transform $header-transition-time ease;
+}
+
+.header_collapse { 
+    transition: transform $header-transition-time ease;
+    transition-delay: $header-transition-time;
+    transform: translateY(-$header-upper-height);   
+
+    .header__basket-upper,
+    .header__logo-upper {
+        transform: translateY($header-upper-height);
+        transition-delay: $header-transition-time;
+    }
+    .header__basket-lower,
+    .header__logo-lower {
+        transform: translateY(0);
+        transition-delay: $header-transition-time;
+    }
+    .header__navigation {
+        transform: translate($header-logo-width, 0);
+        transition-delay: 0s;
+    }
+    .header__attach-line {
+        transform: translateY(0);
+        transition-delay: $header-transition-time;
+    }
+}
+
+
+@media(max-width: $device-profile-medium) {
+    .header__search {
+        display: none;
+    }
+    .header__upper {
+        border-bottom: 5px solid $color-teal;
+        .price {
+            display: none;
+        }
+    }
+    .header__mobilemenu {
+        display: block;
+        flex: 20%;
+    }
+    .header__basket-upper {
+        flex: 20%;
+        justify-content: flex-end;
+    }
+    .header__lower {
+        display: none;
+    }
+    .header_collapse {
+        transform: translateY(0);
+        .header__basket-upper,
+        .header__logo-upper {
+            transform: translateY(0);
+        }
+    }
+    .header__attach-line {
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,47 @@
+
+.product {
+    display: flex;
+    flex-direction: row;
+}
+
+.product__image {
+    flex: 50%;
+    border: 1px solid lightgrey;
+    position: relative;
+    img {
+        width: 100%;
+    }
+}
+
+.product__info {
+    display: flex;
+    flex: 50%;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding-left: 50px;
+    & > * {
+        & + * {
+            margin-top: 20px;
+        }
+    }
+}
+
+.product__title {
+
+}
+
+.product__id {
+
+}
+
+.product__price {
+
+}
+
+.product__actions {
+
+}
+
+.product__desc {
+
+}

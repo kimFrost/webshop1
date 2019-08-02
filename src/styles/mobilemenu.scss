@@ -1,0 +1,63 @@
+
+.mobilemenu {
+    display: flex;
+    position: fixed;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    touch-action: pan-y;
+    user-select: none;
+    z-index: 100;
+    overflow: hidden;
+    //backface-visibility: hidden
+    //perspective: 1000px;
+    pointer-events: none;
+}
+
+.mobilemenu__content {
+    background: white;
+    height: 100%;
+    width: 80%;
+    transform: translateX(-100%);
+    transition: transform 300ms ease;
+}
+
+.mobilemenu__nav {
+    display: flex;
+    flex-direction: column;
+}
+
+.mobilemenu__navitem {
+    padding: 1.5em;
+    border-bottom: 1px solid black;
+    color: $color-teal;
+    text-decoration: none;
+    &:hover {
+        background: lightgrey;
+    }
+    &:active {
+        background: lighten(lightgrey, 10%);
+    }
+}
+
+.mobilemenu__background {
+    //transform: translateX(100%);
+    opacity: 0;
+    transition: 300ms ease;
+}
+
+.mobilemenu_show {
+    pointer-events: all;
+    .mobilemenu__content,
+    .mobilemenu__background {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@media(min-width: $device-profile-medium) {
+    .mobilemenu {
+        display: none;
+    }
+}
