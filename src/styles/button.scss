@@ -1,0 +1,59 @@
+
+.button {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    overflow: hidden;
+    min-width: 4em;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    color: $color-teal;
+    outline: none;
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid $color-teal;
+    border-radius: 2em;
+    box-sizing: border-box;
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+.button__content {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    z-index: 1;
+}
+
+.button:hover {
+    background: $color-teal-dark;
+}
+
+.button:active {
+    background: $color-teal;
+    transform: scale(0.96);
+}
+
+.button:disabled {
+    border: 1px solid darken(white, 10);
+    transform: scale(1);
+    cursor: default;
+}
+
+.button_solid {
+    color: white;
+    border: 0;
+    background: $color-teal;
+    &:disabled {
+        background: darken(white, 10);
+        border: 0;
+    }
+}
+
+.button_fill {
+    width: 100%;
+}

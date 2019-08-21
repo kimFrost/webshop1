@@ -1,8 +1,8 @@
 
-$header-upper-height: 60px;
-$header-lower-height: 60px;
-$header-transition-time: 350ms;
-$header-logo-width: 150px;
+$header-upper-height: 60px !default;
+$header-lower-height: 60px !default;
+$header-transition-time: 350ms !default;
+$header-logo-width: 150px !default;
 
 .header {
     display: flex;
@@ -98,9 +98,6 @@ $header-logo-width: 150px;
     & > * {
         transition: 300ms ease;
         transform-origin: 0 100%;
-        &:hover {
-            //transform: rotate(-10deg);
-        }
         & + * {
             margin-left: 2em;
         }

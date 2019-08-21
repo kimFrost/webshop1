@@ -1,0 +1,22 @@
+
+.field {
+    display: flex;
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    background: white;
+    border: 1px solid lightgrey;
+    position: relative;
+    input {
+        margin: 0;
+        padding: 0;
+        display: block;
+        width: inherit;
+        max-width: inherit;
+        border: none;
+        background: inherit;
+    }
+}
+input.field {
+    padding: 10px;
+}
