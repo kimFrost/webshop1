@@ -1,7 +1,7 @@
 
 .app {
     width: 100%;
-    overflow-x: hidden;
+    //overflow-x: hidden; // triggered double scrollbar on page transitions
     font-size: 14px;
    
     font-family: 'Montserrat', sans-serif;
@@ -21,6 +21,7 @@
     padding-bottom: 20px;
     min-height: calc(100vh - 190px);
     box-sizing: border-box;
+    overflow: hidden; // To prevent long page on page transitions. Could properly be fixed with a better solution
 }
 
 .app__footer {
@@ -32,4 +33,25 @@
     .app__body {
         padding-top: 100px;
     }
+}
+
+
+.route-enter {
+    opacity: 0;
+}
+.route-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+.route-enter-done {
+
+}
+.route-exit {
+    opacity: 1;
+}
+.route-exit-active {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    transition: opacity 500ms;
 }
