@@ -12,13 +12,22 @@ interface IProps {
 }
 
 const Button: React.FC<IProps> = ({ onClick , solid, pending = false, disabled = false, fill, children, ...props }) => {
+    const [clicked, setClicked] = useState(false);
     return (
         <button
             className={"button" + 
             (solid ? " button_solid" : "") + 
             (pending ? " button_pending" : "") + 
+            (clicked ? " button_clicked" : "") + 
             (fill ? " button_fill" : "")}
-            onClick={onClick} {...props}
+            onClick={() => {
+                setClicked(true)
+                setTimeout(() => {
+                    setClicked(false)
+                }, 500);
+                if (onClick) onClick();
+            }} 
+            {...props}
             disabled={pending || disabled}>
             <div className="button__content">
                 {children}

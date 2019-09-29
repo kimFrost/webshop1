@@ -76,3 +76,13 @@
         overflow: hidden;
     }
 }
+
+
+// transitions
+.basketitem-exit {
+    opacity: 1;
+}
+.basketitem-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+}

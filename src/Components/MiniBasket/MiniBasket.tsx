@@ -4,6 +4,7 @@ import { IBasketItem } from './../../App.Types';
 import { Link } from 'react-router-dom';
 import ImageLoader from './../ImageLoader/ImageLoader';
 import Button from './../Button/Button';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 
 interface IProps {
@@ -39,19 +40,27 @@ const MiniBasket: React.FC<IProps> = ({ basket, show }) => {
                 {basket.items.length ?
                     <React.Fragment>
                         <div className="minibasket__items">
-                            {
-                                basket.items.map((item) =>
-                                    <MiniBasketItem key={item.ID} item={item}></MiniBasketItem>
-                                )
-                            }
+                            <TransitionGroup component={null}>
+                                {
+                                    basket.items.map((item) =>
+                                        <CSSTransition
+                                            key={item.ID}
+                                            classNames="fade"
+                                            timeout={500}
+                                        >
+                                            <MiniBasketItem key={item.ID} item={item}></MiniBasketItem>
+                                        </CSSTransition>
+                                    )
+                                }
+                            </TransitionGroup>
                         </div>
                         <div className="minibasket__total">
                             <div className="minibasket__total-text">
-                                Total: 
+                                Total:
                             </div>
                             <div className="minibasket__total-value price">
                                 {basket.total.formatted}</div>
-                            </div>
+                        </div>
                     </React.Fragment >
                     :
                     <div>Basket is empty</div>

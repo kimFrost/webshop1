@@ -1,9 +1,11 @@
 
 .app {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     //overflow-x: hidden; // triggered double scrollbar on page transitions
     font-size: 14px;
-   
+    min-height: 100vh;
     font-family: 'Montserrat', sans-serif;
     //font-family: 'Merriweather', serif;
 }
@@ -17,6 +19,7 @@
 }
 
 .app__body {
+    flex: 1 1 auto;
     padding-top: 150px + 20px;
     padding-bottom: 20px;
     min-height: calc(100vh - 190px);
@@ -25,8 +28,9 @@
 }
 
 .app__footer {
-    padding: 30px 0;
-    border-top: 5px solid $color-teal;
+    padding: 20px 0;
+    color: white;
+    background: $color-teal-dark;
 }
 
 @media(max-width: $device-profile-medium) {
@@ -59,3 +63,12 @@
 // fade existing page out
 // then scroll to top with pos absolute on prev page
 // then face in next page
+
+
+.fade-exit {
+    opacity: 1;
+}
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+}

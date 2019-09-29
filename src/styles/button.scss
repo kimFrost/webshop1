@@ -10,7 +10,7 @@
     border: none;
     color: $color-teal;
     outline: none;
-    padding: 10px;
+    padding: 13px;
     cursor: pointer;
     border: 1px solid $color-teal;
     border-radius: 2em;
@@ -56,4 +56,32 @@
 
 .button_fill {
     width: 100%;
+}
+
+.button_clicked {
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: calc(50% - 25px);
+        left: calc(50% - 25px);
+        height: 50px;
+        width: 50px;
+        background: white;
+        border-radius: 50%;
+        animation: clickedEffect 500ms normal forwards ease;
+        z-index: 1;
+
+    }
+}
+
+@keyframes clickedEffect {
+    0% {
+        opacity: 1;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(1);
+    }
 }
