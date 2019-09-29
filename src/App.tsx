@@ -116,7 +116,7 @@ const App: React.FC<RouteComponentProps> = ({ history }) => {
                                     unmountOnExit
                                     appear={true}
                                     //timeout={{ enter: 750, exit: 0 }}
-                                    timeout={1000}
+                                    timeout={2000}
                                     >
                                     <Switch location={location}>
                                         <Route path="/" exact render={
