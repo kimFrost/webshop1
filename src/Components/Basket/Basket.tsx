@@ -6,6 +6,7 @@ import { AddToBasketCouter } from './../AddToBasket/AddToBasket';
 import Button from './../Button/Button';
 import Warning from './../Warning/Warning';
 import { useRequestSelector } from './../../Hooks/useRequestSelector';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 
 interface IProps {
@@ -52,34 +53,45 @@ const Basket: React.FC<IProps> = ({ basket }) => {
             {basket.items.length ?
                 <React.Fragment>
                     <div className="basket__items">
-                        {
-                            basket.items.map((item) =>
-                                <BasketItem key={item.ID} item={item} />
-                            )
-                        }
+                        <TransitionGroup component={null}>
+                            {
+                                basket.items.map((item) =>
+                                    <CSSTransition
+                                        key={item.ID}
+                                        classNames="fade"
+                                        timeout={500}
+                                        enter={false}
+                                        unmountOnExit
+                                    >
+                                        <BasketItem key={item.ID} item={item} />
+                                    </CSSTransition>
+
+                                )
+                            }
+                            </TransitionGroup>
                     </div>
-                    <div className="basket__total">
-                        <div className="basket__total-text">
-                            Total:
+                        <div className="basket__total">
+                            <div className="basket__total-text">
+                                Total:
                             </div>
-                        <div className="basket__total-value price">
-                            {basket.total.formatted}</div>
-                    </div>
-                    <div className="basket__bottombar">
-                        <div className="anchor">
-                            <Button solid={true} disabled={true}>
-                                Go to checkout
-                            </Button>
-                            <Warning absolute={true} msg="Undskyld! Checkout er ikke implementeret endnu" direction="left" />
+                            <div className="basket__total-value price">
+                                {basket.total.formatted}</div>
                         </div>
-                    </div>
+                        <div className="basket__bottombar">
+                            <div className="anchor">
+                                <Button solid={true} disabled={true}>
+                                    Go to checkout
+                            </Button>
+                                <Warning absolute={true} msg="Undskyld! Checkout er ikke implementeret endnu" direction="left" />
+                            </div>
+                        </div>
                 </React.Fragment >
-                :
+                    :
                 <div>Basket is empty</div>
-            }
+                    }
         </div>
 
     );
-};
-
+        };
+        
 export default Basket;

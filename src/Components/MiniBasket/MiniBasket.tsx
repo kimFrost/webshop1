@@ -42,15 +42,19 @@ const MiniBasket: React.FC<IProps> = ({ basket, show }) => {
                         <div className="minibasket__items">
                             <TransitionGroup component={null}>
                                 {
-                                    basket.items.map((item) =>
-                                        <CSSTransition
-                                            key={item.ID}
-                                            classNames="fade"
-                                            timeout={500}
-                                        >
-                                            <MiniBasketItem key={item.ID} item={item}></MiniBasketItem>
-                                        </CSSTransition>
-                                    )
+                                    basket.items.map((item) => {
+                                        return (
+                                            <CSSTransition
+                                                key={item.ID}
+                                                classNames="fade"
+                                                timeout={500}
+                                                enter={false}
+                                                unmountOnExit
+                                            >
+                                                <MiniBasketItem key={item.ID} item={item}></MiniBasketItem>
+                                            </CSSTransition>
+                                        )
+                                    })
                                 }
                             </TransitionGroup>
                         </div>

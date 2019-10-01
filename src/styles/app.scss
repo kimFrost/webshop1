@@ -41,7 +41,9 @@
 
 
 .route-enter {
+    position: relative;
     opacity: 0;
+    z-index: 1;
 }
 .route-enter-active {
     opacity: 1;
@@ -51,7 +53,9 @@
 
 }
 .route-exit {
+    position: relative;
     opacity: 1;
+    z-index: 0;
 }
 .route-exit-active {
     opacity: 0;
@@ -67,8 +71,11 @@
 
 .fade-exit {
     opacity: 1;
+    //max-height: 200px;
 }
 .fade-exit-active {
     opacity: 0;
-    transition: opacity 500ms;
+    transition: all 500ms;
+    //max-height: 0;
+    transform: scale(0)
 }
