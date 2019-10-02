@@ -41,9 +41,8 @@ export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) =>
     }
 
     useEffect(() => {
-        console.log('debouncedCount changed')
         if (debouncedCount) {
-            dispatchSetProductQuantity(debouncedCount)
+            dispatchSetProductQuantity(parseInt(debouncedCount))
         }
     }, [debouncedCount]);
 
