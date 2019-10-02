@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Spinner from './../Spinner/Spinner';
 import { useEffect } from 'react';
 
@@ -13,6 +13,20 @@ interface IProps {
 
 const Button: React.FC<IProps> = ({ onClick , solid, pending = false, disabled = false, fill, children, ...props }) => {
     const [clicked, setClicked] = useState(false);
+    const timeoutRefId = useRef<any>();
+
+    const handleOnClick = () => {
+        clearTimeout(timeoutRefId.current);
+        setClicked(false)
+        timeoutRefId.current = setTimeout(() => {
+            setClicked(false)
+        }, 5000);
+        setTimeout(() => {
+            setClicked(true)
+        }, 0);
+        if (onClick) onClick();
+    }
+
     return (
         <button
             className={"button" + 
@@ -20,13 +34,7 @@ const Button: React.FC<IProps> = ({ onClick , solid, pending = false, disabled =
             (pending ? " button_pending" : "") + 
             (clicked ? " button_clicked" : "") + 
             (fill ? " button_fill" : "")}
-            onClick={() => {
-                setClicked(true)
-                setTimeout(() => {
-                    setClicked(false)
-                }, 500);
-                if (onClick) onClick();
-            }} 
+            onClick={handleOnClick} 
             {...props}
             disabled={pending || disabled}>
             <div className="button__content">
