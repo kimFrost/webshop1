@@ -9,12 +9,18 @@
     background: transparent;
     border: none;
     color: $color-teal;
-    outline: none;
     padding: 13px;
     cursor: pointer;
     border: 1px solid $color-teal;
     border-radius: 2em;
     box-sizing: border-box;
+    //user-select: none;
+
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    &:focus {
+        outline: none !important;  
+    }
 
     a {
         text-decoration: none;

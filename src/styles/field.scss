@@ -15,6 +15,9 @@
         max-width: inherit;
         border: none;
         background: inherit;
+        &:focus {
+            outline: none;
+        }
     }
 }
 input.field {
