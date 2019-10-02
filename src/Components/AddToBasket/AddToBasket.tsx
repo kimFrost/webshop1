@@ -5,6 +5,7 @@ import Button from './../Button/Button';
 import { IBasketItem } from './../../App.Types';
 import { useRequestSelector } from './../../Hooks/useRequestSelector';
 import Spinner from './../Spinner/Spinner';
+import { useDebounce } from '../../Hooks/useDebounce';
 
 interface IProps {
     productID: string;
@@ -26,9 +27,31 @@ export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) =>
 
     const dispatch = useDispatch();
 
+    const debouncedCount = useDebounce(count, 500);
+
+
+    const dispatchSetProductQuantity = (value:number) => {
+        dispatch({
+            type: 'SET_PRODUCT_QUANTITY',
+            payload: {
+                ID: item.ID,
+                quantity: value
+            }
+        })
+    }
+
     useEffect(() => {
-        setCount(item.quantity.toString());
-    }, [item.quantity])
+        if (debouncedCount) {
+            dispatchSetProductQuantity(parseInt(debouncedCount))
+        }
+    }, [debouncedCount]);
+
+    // Disable to prevent change count on request responses
+    /*
+    useEffect(() => {
+        setCount(item.quantity.toString()); 
+    }, [item.quantity]);
+    */
 
     return (
         <React.Fragment>
@@ -44,15 +67,11 @@ export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) =>
                     <input className="center" value={count} type="text" onChange={(e) => {
                         const value = parseInt(e.target.value);
                         setCount(e.target.value);
+                        /*
                         if (!isNaN(value)) {
-                            dispatch({
-                                type: 'SET_PRODUCT_QUANTITY',
-                                payload: {
-                                    ID: item.ID,
-                                    quantity: parseInt(e.target.value)
-                                }
-                            })
+                            debounceSetProductQuantity(value)
                         }
+                        */
                     }} />
                     <Spinner isLoading={pending} />
                 </div>
