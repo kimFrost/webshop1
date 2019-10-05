@@ -12,7 +12,7 @@ import { reducer } from './reduxStore/reducer'
 import { logger, middleware } from './reduxStore/middleware';
 import thunk from 'redux-thunk';
 
-const store = createStore(reducer, applyMiddleware(thunk, logger, middleware));
+const store = createStore(reducer, applyMiddleware(thunk, /*logger,*/ middleware)); 
 
 store.dispatch({
     type: 'INIT'

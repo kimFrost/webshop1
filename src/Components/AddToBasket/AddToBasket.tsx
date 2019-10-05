@@ -17,6 +17,9 @@ interface AddToBasketCouterProps {
 
 export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) => {
     const [count, setCount] = useState<string>(item.quantity.toString());
+    //const [count, setCount] = useState<number>(item.quantity);
+    //const [countString, setCountString] = useState<string>(count.toString());
+
     const requestSetQuantity = useRequestSelector({ group: 'SET_PRODUCT_QUANTITY', ID: item.ID });
     const requestDecrease = useRequestSelector({ group: 'DECREASE_PRODUCT_QUANTITY', ID: item.ID });
     const requestIncrease = useRequestSelector({ group: 'INCREASE_PRODUCT_QUANTITY', ID: item.ID });
@@ -41,10 +44,15 @@ export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) =>
     }
 
     useEffect(() => {
+        console.log('debouncedCount changed', debouncedCount)
         if (debouncedCount) {
-            dispatchSetProductQuantity(parseInt(debouncedCount))
+            //dispatchSetProductQuantity(parseInt(debouncedCount))
         }
     }, [debouncedCount]);
+
+    useEffect(() => {
+        console.log('count changed', count)
+    }, [count]);
 
     // Disable to prevent change count on request responses
     /*
@@ -65,6 +73,7 @@ export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) =>
                 }}>-</Button>
                 <div className="field">
                     <input className="center" value={count} type="text" onChange={(e) => {
+                        console.log('field onChange!!!')
                         const value = parseInt(e.target.value);
                         setCount(e.target.value);
                         /*
