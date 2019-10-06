@@ -6,6 +6,7 @@ import { IBasketItem } from './../../App.Types';
 import { useRequestSelector } from './../../Hooks/useRequestSelector';
 import Spinner from './../Spinner/Spinner';
 import { useDebounce } from '../../Hooks/useDebounce';
+import Field from '../Field';
 
 interface IProps {
     productID: string;
@@ -33,7 +34,7 @@ export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) =>
     const debouncedCount = useDebounce(count, 500);
 
 
-    const dispatchSetProductQuantity = (value:number) => {
+    const dispatchSetProductQuantity = (value: number) => {
         dispatch({
             type: 'SET_PRODUCT_QUANTITY',
             payload: {
@@ -71,19 +72,16 @@ export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) =>
                         payload: item.ID
                     })
                 }}>-</Button>
-                <div className="field">
-                    <input className="center" value={count} type="text" onChange={(e) => {
+                <Field
+                    value={count}
+                    debounce={500}
+                    alignment="center"
+                    onChange={(value) => {
                         console.log('field onChange!!!')
-                        const value = parseInt(e.target.value);
-                        setCount(e.target.value);
-                        /*
-                        if (!isNaN(value)) {
-                            debounceSetProductQuantity(value)
-                        }
-                        */
-                    }} />
+                        setCount(value);
+                    }}>
                     <Spinner isLoading={pending} />
-                </div>
+                </Field>
 
                 <Button onClick={() => {
                     setCount((parseInt(count) + 1).toString());
