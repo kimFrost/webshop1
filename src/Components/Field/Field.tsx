@@ -12,6 +12,22 @@ const Field: React.FC<IProps> = ({ value, debounce, onChange, alignment, childre
     const [fieldValue, setFieldValue] = useState<string>(value);
     const debouncedValue = useDebounce(fieldValue, debounce as number);
 
+     /*
+    - value
+      - fieldValue = useState(value)
+      *useEffect => setFieldValue(value)
+        - debouncedValue = useDebounce(fieldValue)
+          *useEffect => field.onChange()
+      
+    
+    - value
+      - fieldValue = useState(value)
+      *useEffect => setFieldValue(value)
+      - debouncedValue = useDebounce(value)
+        *useEffect => field.onChange()
+    
+    */
+
     useEffect(() => {
         setFieldValue(value);
     }, [value]);
@@ -21,6 +37,7 @@ const Field: React.FC<IProps> = ({ value, debounce, onChange, alignment, childre
     }, [debouncedValue])
 
     const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        console.log('handle change');
         setFieldValue(e.target.value);
     }
 
