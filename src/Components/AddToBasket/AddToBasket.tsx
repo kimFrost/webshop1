@@ -5,7 +5,6 @@ import Button from './../Button/Button';
 import { IBasketItem } from './../../App.Types';
 import { useRequestSelector } from './../../Hooks/useRequestSelector';
 import Spinner from './../Spinner/Spinner';
-import { useDebounce } from '../../Hooks/useDebounce';
 import Field from '../Field';
 
 interface IProps {
@@ -18,8 +17,6 @@ interface AddToBasketCouterProps {
 
 export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) => {
     const [count, setCount] = useState<string>(item.quantity.toString());
-    //const [count, setCount] = useState<number>(item.quantity);
-    //const [countString, setCountString] = useState<string>(count.toString());
 
     const requestSetQuantity = useRequestSelector({ group: 'SET_PRODUCT_QUANTITY', ID: item.ID });
     const requestDecrease = useRequestSelector({ group: 'DECREASE_PRODUCT_QUANTITY', ID: item.ID });
@@ -30,33 +27,6 @@ export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) =>
         (requestIncrease && requestIncrease.status === 'pending');
 
     const dispatch = useDispatch();
-
-    const debouncedCount = useDebounce(count, 500);
-
-
-    const dispatchSetProductQuantity = (value: number) => {
-        dispatch({
-            type: 'SET_PRODUCT_QUANTITY',
-            payload: {
-                ID: item.ID,
-                quantity: value
-            }
-        })
-    }
-
-    useEffect(() => {
-        //console.log('debouncedCount changed', debouncedCount)
-        if (debouncedCount) {
-            //dispatchSetProductQuantity(parseInt(debouncedCount))
-        }
-    }, [debouncedCount]);
-
-    // Disable to prevent change count on request responses
-    /*
-    useEffect(() => {
-        setCount(item.quantity.toString()); 
-    }, [item.quantity]);
-    */
 
     return (
         <React.Fragment>
@@ -74,7 +44,13 @@ export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) =>
                     alignment="center"
                     onChange={(value) => {
                         setCount(value);
-                        dispatchSetProductQuantity(parseInt(value));
+                        dispatch({
+                            type: 'SET_PRODUCT_QUANTITY',
+                            payload: {
+                                ID: item.ID,
+                                quantity: parseInt(value)
+                            }
+                        })
                     }}>
                     <Spinner isLoading={pending} />
                 </Field>

@@ -27,6 +27,11 @@ const Button: React.FC<IProps> = ({ onClick , solid, pending = false, disabled =
         if (onClick) onClick();
     }
 
+    // Cleanup timeout on unmount
+    useEffect(() => {
+        return () => clearTimeout(timeoutRefId.current);
+    }, [])
+
     return (
         <button
             className={"button" + 
