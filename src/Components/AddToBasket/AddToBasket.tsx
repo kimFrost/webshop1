@@ -45,15 +45,11 @@ export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) =>
     }
 
     useEffect(() => {
-        console.log('debouncedCount changed', debouncedCount)
+        //console.log('debouncedCount changed', debouncedCount)
         if (debouncedCount) {
             //dispatchSetProductQuantity(parseInt(debouncedCount))
         }
     }, [debouncedCount]);
-
-    useEffect(() => {
-        console.log('count changed', count)
-    }, [count]);
 
     // Disable to prevent change count on request responses
     /*
@@ -77,8 +73,8 @@ export const AddToBasketCouter: React.FC<AddToBasketCouterProps> = ({ item }) =>
                     debounce={500}
                     alignment="center"
                     onChange={(value) => {
-                        console.log('field onChange!!!')
                         setCount(value);
+                        dispatchSetProductQuantity(parseInt(value));
                     }}>
                     <Spinner isLoading={pending} />
                 </Field>
