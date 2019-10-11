@@ -141,7 +141,9 @@ const App: React.FC<RouteComponentProps> = ({ history }) => {
                                         <Route path="/basket" component={BasketPage} />
                                         <Route path="/product/:id" render={(props) => {
                                             return (
-                                                <ProductPage id={props.match.params.id}></ProductPage>
+                                                <div>
+                                                    <ProductPage id={props.match.params.id}></ProductPage>
+                                                </div>
                                             )
                                         }} />
                                     </Switch>
