@@ -1,4 +1,3 @@
-import { useState, useEffect, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { IState } from '../../reduxStore/reducer';
 

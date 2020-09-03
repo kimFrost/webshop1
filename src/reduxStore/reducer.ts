@@ -14,6 +14,7 @@ export interface IState {
     basket: IBasket;
     pageBlocks: Array<IBlock>;
     products: Array<IProduct>;
+    product?: IProduct;
     requests: { [key: string]: IRequestState; };
 }
 
@@ -35,6 +36,7 @@ const defaultState: IState = {
         }
     },
     products: [],
+    product: undefined,
     requests: {}
 };
 

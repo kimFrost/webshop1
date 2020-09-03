@@ -16,7 +16,7 @@ const ProductLoader: React.FC<IProps> = ({ id }) => {
                 <Product product={request.data}></Product>
             }
             {request && request.status === 'pending' &&
-                <div className="overlay">
+                <div className="overlay overlay_pageloader">
                     <div className="spinner"></div>
                 </div>
             }

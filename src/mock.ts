@@ -84,6 +84,7 @@ mockFrontPageData.splice(14, 0, {
 })
 
 const randomReponseTime = (min = 500, max = 2500): number => {
+    max = (min > max) ? min : max;
     return Math.random() * (max - min) + min;
 }
 
@@ -113,7 +114,7 @@ const fetchProducts = async (): Promise<Array<IProduct>> => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(mockProducts)
-        }, randomReponseTime())
+        }, randomReponseTime(1500))
     });
 }
 
@@ -121,7 +122,7 @@ const fetchProduct = async (ID: string): Promise<IProduct | undefined> => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve(mockProducts.filter(product => product.ID === ID)[0]);
-        }, randomReponseTime())
+        }, randomReponseTime(1500))
     });
 }
 

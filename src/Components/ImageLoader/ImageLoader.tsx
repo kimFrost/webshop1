@@ -1,7 +1,7 @@
 import React from 'react'
 import { useIntersect } from '../../Hooks/useIntersect';
 import { useState } from 'react';
-import { ReactComponent as PlaceholderImage } from '../../Resources/no-image.svg';
+//import { ReactComponent as PlaceholderImage } from '../../Resources/no-image.svg';
 import Spinner from './../Spinner/Spinner';
 
 interface IProps {

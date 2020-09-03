@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { IProduct } from '../../App.Types';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+
+import { IProduct } from '../../App.Types';
 import { IState } from '../../reduxStore/reducer';
 import ImageLoader from './../ImageLoader'
-import Button from './../Button/Button';
-import { Link } from 'react-router-dom';
 import AddToBasket from './../AddToBasket/AddToBasket';
 import { useIntersect } from './../../Hooks/useIntersect';
 
